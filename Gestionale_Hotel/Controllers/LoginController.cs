@@ -24,7 +24,7 @@ namespace Gestionale_Hotel.Controllers
                 FormsAuthentication.SetAuthCookie(employees.Username, false);
                 return Redirect(FormsAuthentication.DefaultUrl);
             } else {
-                ViewBag.ErrorAuth = "Username e/o password errate";
+                ViewBag.ErrorAuth = "Username e/o password errate!";
             }
             
             return View();
