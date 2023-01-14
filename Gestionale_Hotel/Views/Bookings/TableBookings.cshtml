@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Gestionale_Hotel.Models.Bookings>
+
+@{
+    ViewBag.Title = "TableBookings";
+}
+
+<h2>TableBookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdBookings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateBooking)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentifierBooking)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCheckOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tariff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdDetailPension)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAdditionalServices)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCustomers)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdBookings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateBooking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentifierBooking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCheckIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCheckOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deposit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tariff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdDetailPension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAdditionalServices)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCustomers)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditBooking", new { id=item.IdBookings}) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdBookings }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdBookings })
+        </td>
+    </tr>
+}
+
+</table>

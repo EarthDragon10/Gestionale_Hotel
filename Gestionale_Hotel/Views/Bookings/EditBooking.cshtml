@@ -1,12 +1,12 @@
 ﻿@model Gestionale_Hotel.Models.Bookings
 
 @{
-    ViewBag.Title = "Bookings";
+    ViewBag.Title = "EditBooking";
 }
 
-<h2>Bookings</h2>
+<h2>EditBooking</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -14,7 +14,6 @@
         <h4>Bookings</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         @Html.HiddenFor(model => model.IdBookings)
 
         <div class="form-group">
@@ -68,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdRoom, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdRoom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.IdRoom, new SelectList(ViewBag.ListRooms, "Value", "Text") ,new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdRoom, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdDetailPension, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdDetailPension, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.IdDetailPension, new SelectList(ViewBag.ListPension, "Value", "Text") ,new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdDetailPension, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,7 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdAdditionalServices, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdAdditionalServices, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.IdAdditionalServices, new SelectList(ViewBag.ListAdditionalServices, "Value", "Text") ,new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdAdditionalServices, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +98,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Gestionale_Hotel.Models
 {
     public class Employees
     {
+        [Key]
         public int IdEmployes { get; set; }
         public string Username { get; set; }
         public string Pwd { get; set; }

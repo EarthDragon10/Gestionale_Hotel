@@ -26,7 +26,7 @@ namespace Gestionale_Hotel.Controllers
             } else {
                 ViewBag.ErrorAuth = "Username e/o password errate!";
             }
-            
+
             return View();
         }
     }

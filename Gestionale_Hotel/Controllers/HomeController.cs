@@ -12,6 +12,7 @@ namespace Gestionale_Hotel.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
     }
