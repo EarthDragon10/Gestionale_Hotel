@@ -7,15 +7,26 @@ using System.Web.Mvc;
 
 namespace Gestionale_Hotel.Controllers
 {
+    [Authorize]
     public class BookingsController : Controller
     {
-        // GET: Bookings
-        [Authorize]
         public ActionResult TableBookings()
         {
             List<Bookings> ListBookings = Bookings.GetAllBookings();
             ViewBag.AfterLogin = true;
             return View(ListBookings);
+        }
+
+        public ActionResult DeleteBooking(int id) {
+            Bookings booking = Bookings.GetSingleBooking(id);
+            return View(booking);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteBooking()
+        {
+            
+            return RedirectToAction("TableBookings", "Bookings");
         }
 
         public ActionResult EditBooking(int id)
@@ -28,7 +39,18 @@ namespace Gestionale_Hotel.Controllers
 
             ViewBag.ListAdditionalServices = Bookings.AdditionalServicesDropdownList();
 
+            ViewBag.ListCustomers = Bookings .CustomersDropdownList();
+
             return View(booking);
+        }
+
+        [HttpPost]
+        public ActionResult EditBooking(Bookings booking)
+        {
+
+            Bookings.EditBooking(booking);
+
+            return RedirectToAction("TableBookings", "Bookings");
         }
     }
 }

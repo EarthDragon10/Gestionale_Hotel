@@ -142,7 +142,8 @@ namespace Gestionale_Hotel.Models
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "UpdateBooking";
 
-            command.Parameters.AddWithValue("@DateBoooking", booking.DateBooking);
+            command.Parameters.AddWithValue("@IdBookings", booking.IdBookings);
+            command.Parameters.AddWithValue("@DateBooking", booking.DateBooking);
             command.Parameters.AddWithValue("@IdentifierBooking", booking.IdentifierBooking);
             command.Parameters.AddWithValue("@DateCheckIn", booking.DateCheckIn);
             command.Parameters.AddWithValue("@DateCheckOut", booking.DateCheckOut);
@@ -205,6 +206,15 @@ namespace Gestionale_Hotel.Models
         public static List<SelectListItem> RoomsDropdownList()
         {
             List<SelectListItem> selectListItems= new List<SelectListItem>();
+
+            SelectListItem selectItemEmpty = new SelectListItem
+            {
+                Value = "0",
+                Text = "",
+            };
+            selectListItems.Add(selectItemEmpty);
+
+            
 
             SqlConnection connection = Shared.GetConnectionDB();
             connection.Open();
@@ -285,8 +295,41 @@ namespace Gestionale_Hotel.Models
                     {
                         SelectListItem selectItem = new SelectListItem
                         {
-                            Value = reader["IdAddditionalServices"].ToString(),
+                            Value = reader["IdAdditionalServices"].ToString(),
                             Text = reader["AdditionalServices"].ToString() + " " + reader["Tariff"].ToString() + "Є",
+                        };
+                        selectListItems.Add(selectItem);
+                    }
+                }
+                return selectListItems;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public static List<SelectListItem> CustomersDropdownList()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+            SqlDataReader reader = Shared.GetReaderAfterSql("Select * from Customers", connection);
+
+            try
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        SelectListItem selectItem = new SelectListItem
+                        {
+                            Value = reader["IdCustomers"].ToString(),
+                            Text = reader["LastName"].ToString() + " " + reader["FirstName"].ToString() + "Є",
                         };
                         selectListItems.Add(selectItem);
                     }
