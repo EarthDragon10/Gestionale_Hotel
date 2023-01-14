@@ -214,8 +214,6 @@ namespace Gestionale_Hotel.Models
             };
             selectListItems.Add(selectItemEmpty);
 
-            
-
             SqlConnection connection = Shared.GetConnectionDB();
             connection.Open();
             SqlDataReader reader = Shared.GetReaderAfterSql("Select * from Room", connection);
