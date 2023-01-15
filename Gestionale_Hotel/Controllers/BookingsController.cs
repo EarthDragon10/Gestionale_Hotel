@@ -23,9 +23,9 @@ namespace Gestionale_Hotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteBooking()
+        public ActionResult DeleteBooking(Bookings booking)
         {
-            
+            Bookings.DeleteBooking(booking);
             return RedirectToAction("TableBookings", "Bookings");
         }
 
@@ -50,6 +50,31 @@ namespace Gestionale_Hotel.Controllers
 
             Bookings.EditBooking(booking);
 
+            return RedirectToAction("TableBookings", "Bookings");
+        }
+
+        public ActionResult DetailBooking(int id)
+        {
+            Bookings booking = Bookings.GetSingleBooking(id);
+            return View(booking);
+        }
+
+        public ActionResult CreateBooking()
+        {
+            ViewBag.ListRooms = Bookings.RoomsDropdownList();
+
+            ViewBag.ListPension = Bookings.PensionDropdownList();
+
+            ViewBag.ListAdditionalServices = Bookings.AdditionalServicesDropdownList();
+
+            ViewBag.ListCustomers = Bookings.CustomersDropdownList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateBooking(Bookings newBooking)
+        {
+            Bookings.InsertBewBooking(newBooking);
             return RedirectToAction("TableBookings", "Bookings");
         }
     }

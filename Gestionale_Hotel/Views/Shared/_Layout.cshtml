@@ -11,7 +11,19 @@
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Home</a>
+            @Html.ActionLink("Home", "Index", "Home", new { @class = "navbar-brand" })
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button class="btn btn-info">@User.Identity.Name @Html.ActionLink("Logout", "Login", "Login")</button>
+                <button class="btn btn-info">@Html.ActionLink("Lista Clienti", "Index", "Customers")</button>
+            }
+            else
+            {
+                <button class="btn btn-info">@Html.ActionLink("Login", "Login", "Login")</button>
+            }
+
+
         </nav>
     </div>
 

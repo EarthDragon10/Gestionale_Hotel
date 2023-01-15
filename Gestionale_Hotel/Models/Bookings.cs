@@ -159,7 +159,7 @@ namespace Gestionale_Hotel.Models
             connection.Close();
         }
 
-        public static void deleteBooking(int IdBookings)
+        public static void DeleteBooking(Bookings bookings)
         {
 
             SqlConnection connection = Shared.GetConnectionDB();
@@ -169,25 +169,21 @@ namespace Gestionale_Hotel.Models
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "deleteBooking";
 
-            command.Parameters.AddWithValue("@IdBookings", IdBookings);
-           
+            command.Parameters.AddWithValue("@IdBookings", bookings.IdBookings);
 
             command.Connection = connection;
             command.ExecuteNonQuery();
             connection.Close();
         }
-
-        public static void UpdateBooking(Bookings booking)
+        public static void InsertBewBooking(Bookings booking)
         {
-
             SqlConnection connection = Shared.GetConnectionDB();
             connection.Open();
-
             SqlCommand command = new SqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.CommandText = "UpdateBooking";
+            command.CommandText = "InsertBooking";
 
-            command.Parameters.AddWithValue("@DateBoooking", booking.DateBooking);
+            command.Parameters.AddWithValue("@DateBooking", booking.DateBooking);
             command.Parameters.AddWithValue("@IdentifierBooking", booking.IdentifierBooking);
             command.Parameters.AddWithValue("@DateCheckIn", booking.DateCheckIn);
             command.Parameters.AddWithValue("@DateCheckOut", booking.DateCheckOut);
@@ -327,7 +323,7 @@ namespace Gestionale_Hotel.Models
                         SelectListItem selectItem = new SelectListItem
                         {
                             Value = reader["IdCustomers"].ToString(),
-                            Text = reader["LastName"].ToString() + " " + reader["FirstName"].ToString() + "Є",
+                            Text = reader["LastName"].ToString() + " " + reader["FirstName"].ToString(),
                         };
                         selectListItems.Add(selectItem);
                     }

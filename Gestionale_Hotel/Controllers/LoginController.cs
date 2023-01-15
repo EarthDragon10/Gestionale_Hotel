@@ -21,6 +21,7 @@ namespace Gestionale_Hotel.Controllers
         {
             if (Employees.GetEmployees(employees.Username, employees.Pwd) != null)
             {
+                ViewBag.IsAuth = true;
                 FormsAuthentication.SetAuthCookie(employees.Username, false);
                 return Redirect(FormsAuthentication.DefaultUrl);
             } else {
@@ -28,6 +29,13 @@ namespace Gestionale_Hotel.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            ViewBag.IsAuth = false;
+            FormsAuthentication.SignOut();
+            return RedirectToAction(FormsAuthentication.LoginUrl);
         }
     }
 }

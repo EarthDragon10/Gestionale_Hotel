@@ -1,14 +1,11 @@
 ﻿@model Gestionale_Hotel.Models.Bookings
 
 @{
-    ViewBag.Title = "DeleteBooking";    
+    ViewBag.Title = "DetailBooking";
 }
 
-@Html.HiddenFor(model => model.IdBookings)
+<h2>DetailBooking</h2>
 
-<h2>DeleteBooking</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Bookings</h4>
     <hr />
@@ -94,14 +91,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.IdBookings)
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "EditBooking", new { id = Model.IdBookings }) |
+    @Html.ActionLink("Back to List", "TableBookings")
+</p>

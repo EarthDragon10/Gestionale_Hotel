@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BookingsController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +212,9 @@
     <Content Include="Views\Bookings\EditBooking.cshtml" />
     <Content Include="Views\Bookings\TableBookings.cshtml" />
     <Content Include="Views\Bookings\DeleteBooking.cshtml" />
+    <Content Include="Views\Bookings\DetailBooking.cshtml" />
+    <Content Include="Views\Bookings\CreateBooking.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
