@@ -1,0 +1,35 @@
+﻿@model Gestionale_Hotel.Models.AdditionalServices
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@Html.HiddenFor(model => model.IdAddtionalServices)
+
+<div>
+    <h4>AdditionalServices</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrAdditionalServices)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrAdditionalServices)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tariff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tariff)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAddtionalServices }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

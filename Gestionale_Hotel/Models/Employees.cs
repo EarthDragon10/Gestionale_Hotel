@@ -13,7 +13,7 @@ namespace Gestionale_Hotel.Models
         public int IdEmployes { get; set; }
         public string Username { get; set; }
         public string Pwd { get; set; }
-        public static Employees GetEmployees(string username, string pwd)
+        public static Employees IsAuth(string username, string pwd)
         {
 
             // modificare con il return su true ( se il login ha successo ) e false
@@ -50,6 +50,128 @@ namespace Gestionale_Hotel.Models
             {
                 connection.Close();
             }     
+        }
+        public static List<Employees> GetAllCustomers()
+        {
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+            List<Employees> ListEmployees = new List<Employees>();
+
+            SqlDataReader reader = Shared.GetReaderAfterSql("Select * from Employees", connection);
+
+            try
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Employees employee = new Employees();
+                        employee.IdEmployes = Convert.ToInt32(reader["IdEmployes"]);
+                        employee.Username = reader["Username"].ToString();
+                        employee.Pwd = reader["Pwd"].ToString();
+                        
+                        ListEmployees.Add(employee);
+                    }
+                }
+                return ListEmployees;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public static Employees GetSingleCustomer(int id)
+        {
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+
+            SqlCommand command = new SqlCommand();
+            command.Parameters.AddWithValue("@Id", id);
+
+            command.CommandText = "Select * from Employees where IdEmployes=@Id";
+            command.Connection = connection;
+
+            SqlDataReader reader = command.ExecuteReader();
+            Employees employee = new Employees();
+
+            try
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        employee.IdEmployes = Convert.ToInt32(reader["IdEmployes"]);
+                        employee.Username = reader["Username"].ToString();
+                        employee.Pwd = reader["Pwd"].ToString();
+                    }
+                }
+                return employee;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public static void EditEmployee(Employees employee)
+        {
+
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "EditEmployee";
+
+            command.Parameters.AddWithValue("@Username", employee.Username);
+            command.Parameters.AddWithValue("@Pwd", employee.Pwd);
+ 
+            command.Connection = connection;
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void DeleteEmployee(Employees employee)
+        {
+
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "DeleteEmployee";
+
+            command.Parameters.AddWithValue("@IdEmployes", employee.IdEmployes);
+
+            command.Connection = connection;
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void InsertEmployee(Employees employee)
+        {
+
+            SqlConnection connection = Shared.GetConnectionDB();
+            connection.Open();
+
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "InsertEmployee";
+
+            command.Parameters.AddWithValue("@Username", employee.Username);
+            command.Parameters.AddWithValue("@Pwd", employee.Pwd);
+
+            command.Connection = connection;
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

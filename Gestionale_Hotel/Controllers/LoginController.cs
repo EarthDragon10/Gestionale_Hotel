@@ -19,7 +19,7 @@ namespace Gestionale_Hotel.Controllers
         [HttpPost]
         public ActionResult Login(Employees employees)
         {
-            if (Employees.GetEmployees(employees.Username, employees.Pwd) != null)
+            if (Employees.IsAuth(employees.Username, employees.Pwd) != null)
             {
                 ViewBag.IsAuth = true;
                 FormsAuthentication.SetAuthCookie(employees.Username, false);
