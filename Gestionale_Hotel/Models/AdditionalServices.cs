@@ -10,7 +10,7 @@ namespace Gestionale_Hotel.Models
     public class AdditionalServices
     {
         [Key]
-        public int IdAddtionalServices { get; set; }
+        public int IdAdditionalServices { get; set; }
         public string DescrAdditionalServices { get; set; }
         public decimal Tariff { get; set; }
         public static List<AdditionalServices> GetAllAdditionalServices()
@@ -28,7 +28,7 @@ namespace Gestionale_Hotel.Models
                     while (reader.Read())
                     {
                         AdditionalServices AddServ = new AdditionalServices();
-                        AddServ.IdAddtionalServices = Convert.ToInt32(reader["IdAdditionalServices"]);
+                        AddServ.IdAdditionalServices = Convert.ToInt32(reader["IdAdditionalServices"]);
                         AddServ.DescrAdditionalServices = reader["AdditionalServices"].ToString();
                         AddServ.Tariff = Convert.ToDecimal(reader["Tariff"]);
                         ListAdditionalServices.Add(AddServ);
@@ -64,7 +64,7 @@ namespace Gestionale_Hotel.Models
                     while (reader.Read())
                     {
                         
-                        AddServ.IdAddtionalServices = Convert.ToInt32(reader["IdAddtionalServices"]);
+                        AddServ.IdAdditionalServices = Convert.ToInt32(reader["IdAddtionalServices"]);
                         AddServ.DescrAdditionalServices = reader["AdditionalServices"].ToString();
                         AddServ.Tariff = Convert.ToDecimal(reader["Tariff"]);
 ;
@@ -108,7 +108,7 @@ namespace Gestionale_Hotel.Models
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "DeleteAdditionalServices";
 
-            command.Parameters.AddWithValue("@IdAddtionalServices", AddServ.IdAddtionalServices);
+            command.Parameters.AddWithValue("@IdAddtionalServices", AddServ.IdAdditionalServices);
 
             command.Connection = connection;
             command.ExecuteNonQuery();
