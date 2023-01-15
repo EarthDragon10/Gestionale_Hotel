@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Gestionale_Hotel.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdditionalServicesController : Controller
     {
         // GET: AdditionalServices
